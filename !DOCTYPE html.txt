@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffebf0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #ff3385;
+        }
+        #no-btn {
+            position: absolute;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 24px;
+            color: #ff3385;
+            margin-top: 20px;
+            animation: pop 0.5s ease-in-out;
+        }
+        .celebrate-message {
+            display: none;
+            font-size: 24px;
+            color: #ff66b2;
+            margin-top: 20px;
+            animation: pop 0.5s ease-in-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            opacity: 0;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+        @keyframes floatUp {
+            0% { top: 100%; opacity: 1; }
+            100% { top: 10%; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine? 🦆❤️</h1>
+        <p>Quack Quack!</p>
+        <div class="buttons">
+            <button onclick="showMessage()">Yes!</button>
+            <button id="no-btn" onmouseover="moveButton()">No 😢</button>
+        </div>
+        <p id="message" class="hidden-message">Yay! You made my heart quack with joy! 💖🦆</p>
+        <p id="celebrateMessage" class="celebrate-message">Let's celebrate with KFC and Subway! 🍗🥪</p>
+    </div>
+    <script>
+        function moveButton() {
+            let x = Math.random() * window.innerWidth - 100;
+            let y = Math.random() * window.innerHeight - 50;
+            let btn = document.getElementById('no-btn');
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+        
+        function showMessage() {
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('celebrateMessage').style.display = 'block';
+            createHearts();
+        }
+        
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('hearts');
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
